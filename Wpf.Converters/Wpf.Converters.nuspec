@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/nkristek/Wpf.Converters/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/nkristek/Wpf.Converters</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>This is the initial release on nuget.</releaseNotes>
+    <copyright>$copyright$</copyright>
+  </metadata>
+</package>

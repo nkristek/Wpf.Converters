@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Converters", "Wpf.Converters\Wpf.Converters.csproj", "{9E5BC521-4539-41A3-B968-2701B3F5A00D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Converters.Tests", "Wpf.Converters.Tests\Wpf.Converters.Tests.csproj", "{78739A48-BF71-4C78-A05D-503F719A8546}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E5BC521-4539-41A3-B968-2701B3F5A00D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E5BC521-4539-41A3-B968-2701B3F5A00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E5BC521-4539-41A3-B968-2701B3F5A00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E5BC521-4539-41A3-B968-2701B3F5A00D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78739A48-BF71-4C78-A05D-503F719A8546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78739A48-BF71-4C78-A05D-503F719A8546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78739A48-BF71-4C78-A05D-503F719A8546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78739A48-BF71-4C78-A05D-503F719A8546}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0BB8710-6CF9-4EBB-9824-4FCBE68C3790}
+	EndGlobalSection
+EndGlobal

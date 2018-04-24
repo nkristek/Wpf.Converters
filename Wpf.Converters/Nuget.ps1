@@ -1,0 +1,1 @@
+nuget pack Wpf.Converters.csproj -Build -Properties Configuration=Release
