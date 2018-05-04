@@ -12,10 +12,10 @@ namespace nkristek.Wpf.Converters
     /// Returns <see cref="Visibility.Hidden"/> if it is null or empty "Hidden" was set as a parameter.
     /// Returns <see cref="Visibility.Collapsed"/> otherwise.
     /// </summary>
-    public class StringNotNullOrEmptyToVisibilityConverter
+    public class StringNullOrEmptyToInverseVisibilityConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new StringNotNullOrEmptyToVisibilityConverter();
+        public static readonly IValueConverter Instance = new StringNullOrEmptyToInverseVisibilityConverter();
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {

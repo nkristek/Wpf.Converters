@@ -38,22 +38,36 @@ or of course create instances in the views:
 
 ## Overview
 
+Bool:
+- BoolToInverseBoolConverter
+- ValueNullToBoolConverter
+- ValueNullToInverseBoolConverter
+- StringNullOrEmptyToBoolConverter
+- StringNullOrEmptyToInverseBoolConverter
+- ICollectionNullOrEmptyToBoolConverter
+- ICollectionNullOrEmptyToInverseBoolConverter
 - AnyBoolToBoolConverter
 - AnyBoolToInverseBoolConverter
-- AnyBoolToVisibilityConverter
-- BoolToInverseBoolConverter
-- BoolToNotVisibilityConverter
-- BoolToVisibilityConverter
-- DateTimeToStringConverter
-- IEnumerableNotNullOrEmptyToBoolConverter
-- IEnumerableNullOrEmptyToBoolConverter
-- ObjectToStringEqualsParameterToVisibilityConverter
-- StringNotNullOrEmptyToBoolConverter
-- StringNotNullOrEmptyToVisibilityConverter
-- ValueNotNullToBoolConverter
-- ValueNotNullToVisibilityConverter
-- ValueNullToBoolConverter
+- ObjectToStringEqualsParameterToBoolConverter
+- ObjectToStringEqualsParameterToInverseBoolConverter
+
+Visibility:
 - VisibilityToInverseVisibilityConverter
+- BoolToVisibilityConverter
+- BoolToInverseVisibilityConverter
+- ValueNullToVisibilityConverter
+- ValueNullToInverseVisibilityConverter
+- StringNullOrEmptyToVisibilityConverter
+- StringNullOrEmptyToInverseVisibilityConverter
+- ICollectionNullOrEmptyToVisibilityConverter
+- ICollectionNullOrEmptyToInverseVisibilityConverter
+- AnyBoolToVisibilityConverter
+- AnyBoolToInverseVisibilityConverter
+- ObjectToStringEqualsParameterToVisibilityConverter
+- ObjectToStringEqualsParameterToInverseVisibilityConverter
+
+Other:
+- DateTimeToStringConverter
 
 ## Contribution
 

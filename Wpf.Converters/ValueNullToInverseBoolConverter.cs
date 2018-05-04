@@ -6,13 +6,13 @@ using System.Windows.Markup;
 namespace nkristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects <see cref="string"/>.
-    /// Returns true if it is not null or empty.
+    /// Expects <see cref="object"/>.
+    /// Returns true if it is not null.
     /// </summary>
-    public class StringNotNullOrEmptyToBoolConverter
+    public class ValueNullToInverseBoolConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new StringNotNullOrEmptyToBoolConverter();
+        public static readonly IValueConverter Instance = new ValueNullToInverseBoolConverter();
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -21,7 +21,7 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !String.IsNullOrEmpty(value as string);
+            return value != null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

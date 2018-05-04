@@ -7,15 +7,15 @@ using System.Windows.Markup;
 namespace nkristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects a <see cref="bool"/>.
-    /// Returns <see cref="Visibility.Visible"/> if it is false. 
-    /// Returns <see cref="Visibility.Hidden"/> if true and "Hidden" was set as the parameter.
+    /// Expects <see cref="object"/>.
+    /// Returns <see cref="Visibility.Visible"/> if it is null.
+    /// Returns <see cref="Visibility.Hidden"/> if it is not null and "Hidden" was set as a parameter.
     /// Returns <see cref="Visibility.Collapsed"/> otherwise.
     /// </summary>
-    public class BoolToNotVisibilityConverter
+    public class ValueNullToVisibilityConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new BoolToNotVisibilityConverter();
+        public static readonly IValueConverter Instance = new ValueNullToVisibilityConverter();
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -24,7 +24,7 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool b && !b)
+            if (value == null)
                 return Visibility.Visible;
 
             if (parameter is string parameterAsString && parameterAsString.ToLower().Equals("hidden"))
@@ -35,7 +35,7 @@ namespace nkristek.Wpf.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is Visibility visibility && (visibility == Visibility.Collapsed);
+            throw new NotSupportedException();
         }
     }
 }

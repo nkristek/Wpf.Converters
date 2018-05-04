@@ -40,20 +40,29 @@
   <ItemGroup>
     <Compile Include="AnyBoolToBoolConverter.cs" />
     <Compile Include="AnyBoolToInverseBoolConverter.cs" />
+    <Compile Include="AnyBoolToInverseVisibilityConverter.cs" />
     <Compile Include="AnyBoolToVisibilityConverter.cs" />
     <Compile Include="BoolToInverseBoolConverter.cs" />
-    <Compile Include="BoolToNotVisibilityConverter.cs" />
+    <Compile Include="BoolToInverseVisibilityConverter.cs" />
     <Compile Include="BoolToVisibilityConverter.cs" />
     <Compile Include="DateTimeToStringConverter.cs" />
-    <Compile Include="IEnumerableNotNullOrEmptyToBoolConverter.cs" />
-    <Compile Include="IEnumerableNullOrEmptyToBoolConverter.cs" />
+    <Compile Include="ICollectionNullOrEmptyToInverseBoolConverter.cs" />
+    <Compile Include="ICollectionNullOrEmptyToBoolConverter.cs" />
+    <Compile Include="ICollectionNullOrEmptyToInverseVisibilityConverter.cs" />
+    <Compile Include="ICollectionNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="ObjectToStringEqualsParameterToBoolConverter.cs" />
+    <Compile Include="ObjectToStringEqualsParameterToInverseBoolConverter.cs" />
+    <Compile Include="ObjectToStringEqualsParameterToInverseVisibilityConverter.cs" />
     <Compile Include="ObjectToStringEqualsParameterToVisibilityConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringNotNullOrEmptyToBoolConverter.cs" />
-    <Compile Include="StringNotNullOrEmptyToVisibilityConverter.cs" />
-    <Compile Include="ValueNotNullToBoolConverter.cs" />
-    <Compile Include="ValueNotNullToVisibilityConverter.cs" />
+    <Compile Include="StringNullOrEmptyToBoolConverter.cs" />
+    <Compile Include="StringNullOrEmptyToInverseBoolConverter.cs" />
+    <Compile Include="StringNullOrEmptyToInverseVisibilityConverter.cs" />
+    <Compile Include="StringNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="ValueNullToInverseBoolConverter.cs" />
+    <Compile Include="ValueNullToInverseVisibilityConverter.cs" />
     <Compile Include="ValueNullToBoolConverter.cs" />
+    <Compile Include="ValueNullToVisibilityConverter.cs" />
     <Compile Include="VisibilityToInverseVisibilityConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

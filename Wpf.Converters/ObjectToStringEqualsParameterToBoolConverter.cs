@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace nkristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects <see cref="IEnumerable{T}"/>.
-    /// Returns true if it is null or empty.
+    /// Expects <see cref="object"/>.
+    /// Returns true if <see cref="object.ToString"/> equals the given parameter.
     /// </summary>
-    public class IEnumerableNullOrEmptyToBoolConverter
+    public class ObjectToStringEqualsParameterToBoolConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new IEnumerableNullOrEmptyToBoolConverter();
+        public static readonly IValueConverter Instance = new ObjectToStringEqualsParameterToBoolConverter();
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -23,7 +21,8 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(value is IEnumerable<object>) || !((IEnumerable<object>) value).Any();
+            var parameterAsString = parameter as string;
+            return value?.ToString() == parameterAsString;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

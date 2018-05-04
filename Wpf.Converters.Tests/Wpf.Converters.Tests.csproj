@@ -50,8 +50,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvertersTests.cs" />
+    <Compile Include="BoolConverterTests.cs" />
+    <Compile Include="OtherConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisibilityConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wpf.Converters\Wpf.Converters.csproj">
