@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/nkristek/Wpf.Converters</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>This is the initial release on nuget.</releaseNotes>
+    <releaseNotes>This adds new converters and rename existing ones using the same naming scheme.</releaseNotes>
     <copyright>$copyright$</copyright>
   </metadata>
 </package>
