@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
@@ -10,10 +11,13 @@ namespace nkristek.Wpf.Converters
     /// Expects a list of <see cref="bool"/>.
     /// Returns true if all of them are false.
     /// </summary>
+    [ValueConversion(typeof(IEnumerable<bool>), typeof(bool))]
     public class AnyBoolToInverseBoolConverter
         : MarkupExtension, IMultiValueConverter
     {
-        public static readonly IMultiValueConverter Instance = new AnyBoolToInverseBoolConverter();
+        private static IMultiValueConverter _instance;
+
+        public static IMultiValueConverter Instance => _instance ?? (_instance = new AnyBoolToInverseBoolConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {

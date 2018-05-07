@@ -10,10 +10,13 @@ namespace nkristek.Wpf.Converters
     /// Returns <see cref="string"/> representation. 
     /// Optionally a parameter can be set which will be used as a parameter of the <see cref="DateTime.ToString(string)"/> method.
     /// </summary>
+    [ValueConversion(typeof(DateTime), typeof(string))]
     public class DateTimeToStringConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new DateTimeToStringConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new DateTimeToStringConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -22,22 +25,34 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return null;
+            if (!(value is DateTime))
+                return Binding.DoNothing;
 
-            var dateTime = (DateTime)value;
-            if (dateTime == DateTime.MinValue)
-                return null;
+            var dateTimeValue = (DateTime)value;
 
             if (parameter is string s && !String.IsNullOrEmpty(s))
-                return dateTime.ToString(s);
+                return dateTimeValue.ToString(s);
 
-            return dateTime.ToString(culture);
+            return dateTimeValue.ToString(culture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException();
+            if (!(value is string))
+                return Binding.DoNothing;
+
+            var stringValue = (string)value;
+
+            if (parameter is string parameterAsString && !String.IsNullOrEmpty(parameterAsString))
+            {
+                if (DateTime.TryParseExact(stringValue, parameterAsString, null, DateTimeStyles.None, out var parsedDateTime))
+                    return parsedDateTime;
+                return Binding.DoNothing;
+            }
+
+            if (DateTime.TryParse(stringValue, out var dateTime))
+                return dateTime;
+            return Binding.DoNothing;
         }
     }
 }

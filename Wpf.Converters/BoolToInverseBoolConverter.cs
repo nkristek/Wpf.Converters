@@ -9,10 +9,13 @@ namespace nkristek.Wpf.Converters
     /// Expects a <see cref="bool"/>.
     /// Returns its opposite.
     /// </summary>
+    [ValueConversion(typeof(bool), typeof(bool))]
     public class BoolToInverseBoolConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new BoolToInverseBoolConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new BoolToInverseBoolConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -21,12 +24,16 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is bool b && !b; 
+            if (!(value is bool))
+                return Binding.DoNothing;
+
+            var boolValue = (bool) value;
+            return !boolValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is bool b && !b;
+            return Convert(value, targetType, parameter, culture);
         }
     }
 }

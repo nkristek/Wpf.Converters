@@ -59,6 +59,7 @@
     <Compile Include="StringNullOrEmptyToInverseBoolConverter.cs" />
     <Compile Include="StringNullOrEmptyToInverseVisibilityConverter.cs" />
     <Compile Include="StringNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="ValueConverterChain.cs" />
     <Compile Include="ValueNullToInverseBoolConverter.cs" />
     <Compile Include="ValueNullToInverseVisibilityConverter.cs" />
     <Compile Include="ValueNullToBoolConverter.cs" />

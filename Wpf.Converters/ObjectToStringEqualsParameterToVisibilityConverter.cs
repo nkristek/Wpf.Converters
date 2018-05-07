@@ -11,10 +11,13 @@ namespace nkristek.Wpf.Converters
     /// Returns <see cref="Visibility.Visible"/> if <see cref="object.ToString"/> equals the given parameter.
     /// Returns <see cref="Visibility.Collapsed"/> otherwise.
     /// </summary>
+    [ValueConversion(typeof(object), typeof(Visibility))]
     public class ObjectToStringEqualsParameterToVisibilityConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new ObjectToStringEqualsParameterToVisibilityConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new ObjectToStringEqualsParameterToVisibilityConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -23,8 +26,7 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var parameterAsString = parameter as string;
-            return value?.ToString() == parameterAsString ? Visibility.Visible : Visibility.Collapsed;
+            return value?.ToString() == parameter as string ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

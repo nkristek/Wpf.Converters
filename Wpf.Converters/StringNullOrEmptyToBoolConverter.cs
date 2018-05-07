@@ -9,10 +9,13 @@ namespace nkristek.Wpf.Converters
     /// Expects <see cref="string"/>.
     /// Returns true if it is null or empty.
     /// </summary>
+    [ValueConversion(typeof(string), typeof(bool))]
     public class StringNullOrEmptyToBoolConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new StringNullOrEmptyToBoolConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new StringNullOrEmptyToBoolConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -21,7 +24,11 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return String.IsNullOrEmpty(value as string);
+            if (value != null && !(value is string))
+                return Binding.DoNothing;
+
+            var stringValue = (string)value;
+            return String.IsNullOrEmpty(stringValue);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

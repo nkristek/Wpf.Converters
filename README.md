@@ -36,6 +36,16 @@ or of course create instances in the views:
        Visibility="{Binding Value, Converter={StaticResource ValueNotNullToVisibilityConverter}}" />
 ```
 
+You can also use the ```ValueConverterChain``` converter, which executes the given converters in succession. Please note, that the TargetType is only correctly set, when the ```ValueConversionAttribute``` is set on the ```IValueConverter```.
+
+```xaml
+<c:ValueConverterChain x:Key="ValueNullToInverseBoolConverter">
+    <c:ValueNullToBoolConverter/>
+    <c:BoolToInverseBoolConverter/>
+</c:ValueConverterChain>
+```
+The above use of the ```ValueConverterChain``` would be equivalent to the ```ValueNullToInverseBoolConverter```.
+
 ## Overview
 
 Bool:
@@ -68,6 +78,7 @@ Visibility:
 
 Other:
 - DateTimeToStringConverter
+- ValueConverterChain
 
 ## Contribution
 

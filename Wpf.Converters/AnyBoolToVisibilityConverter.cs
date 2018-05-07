@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -11,10 +12,13 @@ namespace nkristek.Wpf.Converters
     /// Expects a list of <see cref="bool"/>.
     /// Returns <see cref="Visibility.Visible"/> if any of them are true.
     /// </summary>
+    [ValueConversion(typeof(IEnumerable<bool>), typeof(Visibility))]
     public class AnyBoolToVisibilityConverter
         : MarkupExtension, IMultiValueConverter
     {
-        public static readonly IMultiValueConverter Instance = new AnyBoolToVisibilityConverter();
+        private static IMultiValueConverter _instance;
+
+        public static IMultiValueConverter Instance => _instance ?? (_instance = new AnyBoolToVisibilityConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {

@@ -10,10 +10,13 @@ namespace nkristek.Wpf.Converters
     /// Expects <see cref="Visibility"/>.
     /// Returns the opposite, if parameter is set to hidden, it will return <see cref="Visibility.Hidden"/> if encountering <see cref="Visibility.Visible"/>
     /// </summary>
+    [ValueConversion(typeof(Visibility), typeof(Visibility))]
     public class VisibilityToInverseVisibilityConverter 
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new VisibilityToInverseVisibilityConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new VisibilityToInverseVisibilityConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -22,11 +25,11 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return null;
+            if (!(value is Visibility))
+                return Binding.DoNothing;
 
-            var valueAsVisibility = (Visibility)value;
-            if (valueAsVisibility != Visibility.Visible)
+            var visibilityValue = (Visibility)value;
+            if (visibilityValue != Visibility.Visible)
                 return Visibility.Visible;
 
             if (parameter is string parameterAsString && parameterAsString.ToLower().Equals("hidden"))

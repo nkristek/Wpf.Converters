@@ -9,10 +9,13 @@ namespace nkristek.Wpf.Converters
     /// Expects <see cref="object"/>.
     /// Returns true if it is not null.
     /// </summary>
+    [ValueConversion(typeof(object), typeof(bool))]
     public class ValueNullToInverseBoolConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new ValueNullToInverseBoolConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new ValueNullToInverseBoolConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {

@@ -9,10 +9,13 @@ namespace nkristek.Wpf.Converters
     /// Expects <see cref="object"/>.
     /// Returns true if <see cref="object.ToString"/> equals the given parameter.
     /// </summary>
+    [ValueConversion(typeof(object), typeof(bool))]
     public class ObjectToStringEqualsParameterToBoolConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new ObjectToStringEqualsParameterToBoolConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new ObjectToStringEqualsParameterToBoolConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -21,8 +24,7 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var parameterAsString = parameter as string;
-            return value?.ToString() == parameterAsString;
+            return value?.ToString() == parameter as string;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

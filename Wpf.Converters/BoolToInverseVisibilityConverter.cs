@@ -12,10 +12,13 @@ namespace nkristek.Wpf.Converters
     /// Returns <see cref="Visibility.Hidden"/> if true and "Hidden" was set as the parameter.
     /// Returns <see cref="Visibility.Collapsed"/> otherwise.
     /// </summary>
+    [ValueConversion(typeof(bool), typeof(Visibility))]
     public class BoolToInverseVisibilityConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new BoolToInverseVisibilityConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new BoolToInverseVisibilityConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -24,7 +27,11 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool b && !b)
+            if (!(value is bool))
+                return Binding.DoNothing;
+
+            var boolValue = (bool) value;
+            if (!boolValue)
                 return Visibility.Visible;
 
             if (parameter is string parameterAsString && parameterAsString.ToLower().Equals("hidden"))
@@ -35,7 +42,11 @@ namespace nkristek.Wpf.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is Visibility visibility && (visibility == Visibility.Collapsed);
+            if (!(value is Visibility))
+                return Binding.DoNothing;
+
+            var visibilityValue = (Visibility)value;
+            return visibilityValue != Visibility.Visible;
         }
     }
 }

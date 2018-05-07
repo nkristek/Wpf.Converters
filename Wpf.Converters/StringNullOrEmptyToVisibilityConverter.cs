@@ -12,10 +12,13 @@ namespace nkristek.Wpf.Converters
     /// Returns <see cref="Visibility.Hidden"/> if it is not null or empty "Hidden" was set as a parameter.
     /// Returns <see cref="Visibility.Collapsed"/> otherwise.
     /// </summary>
+    [ValueConversion(typeof(string), typeof(Visibility))]
     public class StringNullOrEmptyToVisibilityConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new StringNullOrEmptyToVisibilityConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new StringNullOrEmptyToVisibilityConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -24,7 +27,11 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (String.IsNullOrEmpty(value as string))
+            if (value != null && !(value is string))
+                return Binding.DoNothing;
+
+            var stringValue = (string)value;
+            if (String.IsNullOrEmpty(stringValue))
                 return Visibility.Visible;
 
             if (parameter is string parameterAsString && parameterAsString.ToLower().Equals("hidden"))

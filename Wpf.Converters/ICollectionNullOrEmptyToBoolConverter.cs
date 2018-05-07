@@ -10,10 +10,13 @@ namespace nkristek.Wpf.Converters
     /// Expects <see cref="ICollection"/>.
     /// Returns true if it is null or empty.
     /// </summary>
+    [ValueConversion(typeof(ICollection), typeof(bool))]
     public class ICollectionNullOrEmptyToBoolConverter
         : MarkupExtension, IValueConverter
     {
-        public static readonly IValueConverter Instance = new ICollectionNullOrEmptyToBoolConverter();
+        private static IValueConverter _instance;
+
+        public static IValueConverter Instance => _instance ?? (_instance = new ICollectionNullOrEmptyToBoolConverter());
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -22,7 +25,11 @@ namespace nkristek.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(value is ICollection) || ((ICollection) value).Count == 0;
+            if (value != null && !(value is ICollection))
+                return Binding.DoNothing;
+
+            var collectionValue = (ICollection)value;
+            return collectionValue == null || collectionValue.Count == 0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
