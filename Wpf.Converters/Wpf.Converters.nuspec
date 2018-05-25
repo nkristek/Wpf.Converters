@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/nkristek/Wpf.Converters</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>This release adds a ValueConversionAttribute on all converters defining source and target type. All converters will now check incoming values for their types and return Binding.DoNothing if the value is not valid. It also brings a ValueConverterChain to chain IValueConverters.</releaseNotes>
+    <releaseNotes>This release changes the namespace to start with an uppercase letter. The namespace is now "NKristek.Wpf.Converters".</releaseNotes>
     <copyright>$copyright$</copyright>
   </metadata>
 </package>
