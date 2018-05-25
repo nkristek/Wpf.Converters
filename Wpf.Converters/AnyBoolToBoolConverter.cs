@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace nkristek.Wpf.Converters
+namespace NKristek.Wpf.Converters
 {
     /// <summary>
     /// Expects a list of <see cref="bool"/>.

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace nkristek.Wpf.Converters.Tests
+namespace NKristek.Wpf.Converters.Tests
 {
     /// <summary>
     /// Test other <see cref="IValueConverter"/> and <see cref="IMultiValueConverter"/>

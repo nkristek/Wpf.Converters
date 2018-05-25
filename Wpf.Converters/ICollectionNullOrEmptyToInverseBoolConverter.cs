@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace nkristek.Wpf.Converters
+namespace NKristek.Wpf.Converters
 {
     /// <summary>
     /// Expects <see cref="ICollection"/>.

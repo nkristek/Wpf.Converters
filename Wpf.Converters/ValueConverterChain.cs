@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace nkristek.Wpf.Converters
+namespace NKristek.Wpf.Converters
 {
     /// <summary>
     /// Represents a chain of <see cref="IValueConverter"/>s to be executed in succession.

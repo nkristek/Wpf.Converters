@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace nkristek.Wpf.Converters.Tests
+namespace NKristek.Wpf.Converters.Tests
 {
     /// <summary>
     /// Test <see cref="IValueConverter"/> and <see cref="IMultiValueConverter"/> which return a <see cref="bool"/>

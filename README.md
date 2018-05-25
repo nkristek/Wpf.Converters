@@ -13,7 +13,7 @@ The recommended way to use this library is via [Nuget](https://www.nuget.org/pac
 
 Import it via:
 ```xaml
-xmlns:c="clr-namespace:nkristek.Wpf.Converters;assembly=nkristek.Wpf.Converters"
+xmlns:c="clr-namespace:NKristek.Wpf.Converters;assembly=NKristek.Wpf.Converters"
 ```
 
 You can use a converter from this library either by using the MarkupExtension:
