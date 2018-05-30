@@ -30,7 +30,7 @@ namespace NKristek.Wpf.Converters
             if (value == null)
                 return Visibility.Visible;
 
-            if (parameter is string parameterAsString && parameterAsString.ToLower().Equals("hidden"))
+            if ("Hidden".Equals(parameter as string, StringComparison.OrdinalIgnoreCase))
                 return Visibility.Hidden;
 
             return Visibility.Collapsed;

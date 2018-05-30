@@ -35,7 +35,7 @@ namespace NKristek.Wpf.Converters
             if (collectionValue != null && collectionValue.Count > 0)
                 return Visibility.Visible;
 
-            if (parameter is string parameterAsString && parameterAsString.ToLower().Equals("hidden"))
+            if ("Hidden".Equals(parameter as string, StringComparison.OrdinalIgnoreCase))
                 return Visibility.Hidden;
 
             return Visibility.Collapsed;
