@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/nkristek/Wpf.Converters</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>This release changes the namespace to start with an uppercase letter. The namespace is now "NKristek.Wpf.Converters".</releaseNotes>
+    <releaseNotes>This release adds AllBool-IMultiValueConverter (AllBoolToBoolConverter, AllBoolToInverseBoolConverter, AllBoolToVisibilityConverter, AllBoolToInverseVisibilityConverter).</releaseNotes>
     <copyright>$copyright$</copyright>
   </metadata>
 </package>
