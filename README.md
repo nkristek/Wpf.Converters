@@ -56,6 +56,8 @@ Bool:
 - StringNullOrEmptyToInverseBoolConverter
 - ICollectionNullOrEmptyToBoolConverter
 - ICollectionNullOrEmptyToInverseBoolConverter
+- AllBoolToBoolConverter
+- AllBoolToInverseBoolConverter
 - AnyBoolToBoolConverter
 - AnyBoolToInverseBoolConverter
 - ObjectToStringEqualsParameterToBoolConverter
@@ -71,6 +73,8 @@ Visibility:
 - StringNullOrEmptyToInverseVisibilityConverter
 - ICollectionNullOrEmptyToVisibilityConverter
 - ICollectionNullOrEmptyToInverseVisibilityConverter
+- AllBoolToVisibilityConverter
+- AllBoolToInverseVisibilityConverter
 - AnyBoolToVisibilityConverter
 - AnyBoolToInverseVisibilityConverter
 - ObjectToStringEqualsParameterToVisibilityConverter

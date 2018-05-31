@@ -112,6 +112,30 @@ namespace NKristek.Wpf.Converters.Tests
         }
 
         [TestMethod]
+        public void TestAllBoolToBoolConverter()
+        {
+            var result1 = AllBoolToBoolConverter.Instance.Convert(new object[] { false, true }, typeof(bool), null, CultureInfo.CurrentCulture);
+            Assert.IsInstanceOfType(result1, typeof(bool));
+            Assert.IsFalse((bool)result1);
+
+            var result2 = AllBoolToBoolConverter.Instance.Convert(new object[] { true, true }, typeof(bool), null, CultureInfo.CurrentCulture);
+            Assert.IsInstanceOfType(result2, typeof(bool));
+            Assert.IsTrue((bool)result2);
+        }
+
+        [TestMethod]
+        public void TestAllBoolToInverseBoolConverter()
+        {
+            var result1 = AllBoolToInverseBoolConverter.Instance.Convert(new object[] { false, true }, typeof(bool), null, CultureInfo.CurrentCulture);
+            Assert.IsInstanceOfType(result1, typeof(bool));
+            Assert.IsTrue((bool)result1);
+
+            var result2 = AllBoolToInverseBoolConverter.Instance.Convert(new object[] { true, true }, typeof(bool), null, CultureInfo.CurrentCulture);
+            Assert.IsInstanceOfType(result2, typeof(bool));
+            Assert.IsFalse((bool)result2);
+        }
+
+        [TestMethod]
         public void TestAnyBoolToBoolConverter()
         {
             var result1 = AnyBoolToBoolConverter.Instance.Convert(new object[] { false, true }, typeof(bool), null, CultureInfo.CurrentCulture);
@@ -122,7 +146,7 @@ namespace NKristek.Wpf.Converters.Tests
             Assert.IsInstanceOfType(result2, typeof(bool));
             Assert.IsFalse((bool)result2);
         }
-
+        
         [TestMethod]
         public void TestAnyBoolToInverseBoolConverter()
         {

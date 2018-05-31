@@ -38,6 +38,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllBoolToBoolConverter.cs" />
+    <Compile Include="AllBoolToInverseBoolConverter.cs" />
+    <Compile Include="AllBoolToInverseVisibilityConverter.cs" />
+    <Compile Include="AllBoolToVisibilityConverter.cs" />
     <Compile Include="AnyBoolToBoolConverter.cs" />
     <Compile Include="AnyBoolToInverseBoolConverter.cs" />
     <Compile Include="AnyBoolToInverseVisibilityConverter.cs" />

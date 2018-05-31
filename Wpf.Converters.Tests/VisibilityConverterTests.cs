@@ -118,6 +118,26 @@ namespace NKristek.Wpf.Converters.Tests
         }
 
         [TestMethod]
+        public void TestAllBoolToVisibilityConverter()
+        {
+            Assert.AreEqual(Visibility.Collapsed, AllBoolToVisibilityConverter.Instance.Convert(new object[] { false, true }, typeof(Visibility), null, CultureInfo.CurrentCulture));
+            Assert.AreEqual(Visibility.Hidden, AllBoolToVisibilityConverter.Instance.Convert(new object[] { false, true }, typeof(Visibility), "Hidden", CultureInfo.CurrentCulture));
+
+            Assert.AreEqual(Visibility.Visible, AllBoolToVisibilityConverter.Instance.Convert(new object[] { true, true }, typeof(Visibility), null, CultureInfo.CurrentCulture));
+            Assert.AreEqual(Visibility.Visible, AllBoolToVisibilityConverter.Instance.Convert(new object[] { true, true }, typeof(Visibility), "Hidden", CultureInfo.CurrentCulture));
+        }
+
+        [TestMethod]
+        public void TestAllBoolToInverseVisibilityConverter()
+        {
+            Assert.AreEqual(Visibility.Visible, AllBoolToInverseVisibilityConverter.Instance.Convert(new object[] { false, true }, typeof(Visibility), null, CultureInfo.CurrentCulture));
+            Assert.AreEqual(Visibility.Visible, AllBoolToInverseVisibilityConverter.Instance.Convert(new object[] { false, true }, typeof(Visibility), "Hidden", CultureInfo.CurrentCulture));
+
+            Assert.AreEqual(Visibility.Collapsed, AllBoolToInverseVisibilityConverter.Instance.Convert(new object[] { true, true }, typeof(Visibility), null, CultureInfo.CurrentCulture));
+            Assert.AreEqual(Visibility.Hidden, AllBoolToInverseVisibilityConverter.Instance.Convert(new object[] { true, true }, typeof(Visibility), "Hidden", CultureInfo.CurrentCulture));
+        }
+
+        [TestMethod]
         public void TestAnyBoolToVisibilityConverter()
         {
             Assert.AreEqual(Visibility.Visible, AnyBoolToVisibilityConverter.Instance.Convert(new object[] { false, true }, typeof(Visibility), null, CultureInfo.CurrentCulture));
