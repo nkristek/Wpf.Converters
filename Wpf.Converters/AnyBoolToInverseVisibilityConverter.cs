@@ -10,7 +10,7 @@ namespace NKristek.Wpf.Converters
 {
     /// <summary>
     /// Expects a list of <see cref="bool"/>.
-    /// Returns <see cref="Visibility.Visible"/> if there are no elements in the list which are true
+    /// Returns <see cref="Visibility.Visible"/> if there are no elements in the list which are true, otherwise <see cref="Visibility.Collapsed"/>. Set "Hidden" as the parameter to return <see cref="Visibility.Hidden"/>.
     /// </summary>
     [ValueConversion(typeof(IEnumerable<bool>), typeof(Visibility))]
     public class AnyBoolToInverseVisibilityConverter

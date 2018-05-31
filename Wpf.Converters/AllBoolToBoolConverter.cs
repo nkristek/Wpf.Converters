@@ -9,7 +9,7 @@ namespace NKristek.Wpf.Converters
 {
     /// <summary>
     /// Expects a list of <see cref="bool"/>.
-    /// Returns true if all of them are true.
+    /// Returns true if all of them are true, otherwise false.
     /// </summary>
     [ValueConversion(typeof(IEnumerable<bool>), typeof(bool))]
     public class AllBoolToBoolConverter
