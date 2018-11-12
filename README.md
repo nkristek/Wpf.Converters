@@ -1,4 +1,10 @@
 # Wpf.Converters
+
+[![NuGet version](https://img.shields.io/nuget/v/NKristek.Wpf.Converters.svg)](https://www.nuget.org/packages/NKristek.Wpf.Converters/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/NKristek.Wpf.Converters.svg)](https://www.nuget.org/packages/NKristek.Wpf.Converters/)
+![.NET version: >= 4.7](https://img.shields.io/badge/.NET-%3E%3D%204.7-green.svg)
+[![GitHub license](https://img.shields.io/github/license/nkristek/Wpf.Converters.svg)](https://github.com/nkristek/Wpf.Converters/blob/master/LICENSE)
+
 A collection of often used converters to write a WPF based application
 
 ## Prerequisites
