@@ -7,9 +7,9 @@ using System.Windows.Markup;
 namespace NKristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects <see cref="object"/>.
-    /// Returns <see cref="Visibility.Collapsed"/> if <see cref="object.ToString"/> equals the given parameter.
-    /// Returns <see cref="Visibility.Visible"/> otherwise.
+    ///     Expects <see cref="object" />.
+    ///     Returns <see cref="Visibility.Collapsed" /> if <see cref="object.ToString" /> equals the given parameter.
+    ///     Returns <see cref="Visibility.Visible" /> otherwise.
     /// </summary>
     [ValueConversion(typeof(object), typeof(Visibility))]
     public class ObjectToStringEqualsParameterToInverseVisibilityConverter
@@ -19,11 +19,6 @@ namespace NKristek.Wpf.Converters
 
         public static IValueConverter Instance => _instance ?? (_instance = new ObjectToStringEqualsParameterToInverseVisibilityConverter());
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return Instance;
-        }
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value?.ToString() != parameter as string ? Visibility.Visible : Visibility.Collapsed;
@@ -32,6 +27,11 @@ namespace NKristek.Wpf.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return Instance;
         }
     }
 }

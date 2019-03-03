@@ -6,8 +6,8 @@ using System.Windows.Markup;
 namespace NKristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects <see cref="object"/>.
-    /// Returns true if it is null.
+    ///     Expects <see cref="object" />.
+    ///     Returns true if it is null.
     /// </summary>
     [ValueConversion(typeof(object), typeof(bool))]
     public class ValueNullToBoolConverter
@@ -17,11 +17,6 @@ namespace NKristek.Wpf.Converters
 
         public static IValueConverter Instance => _instance ?? (_instance = new ValueNullToBoolConverter());
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return Instance;
-        }
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value == null;
@@ -30,6 +25,11 @@ namespace NKristek.Wpf.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return Instance;
         }
     }
 }

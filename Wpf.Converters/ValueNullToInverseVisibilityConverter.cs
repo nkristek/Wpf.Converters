@@ -7,10 +7,10 @@ using System.Windows.Markup;
 namespace NKristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects <see cref="object"/>.
-    /// Returns <see cref="Visibility.Visible"/> if it is not null.
-    /// Returns <see cref="Visibility.Hidden"/> if it is null and "Hidden" was set as a parameter.
-    /// Returns <see cref="Visibility.Collapsed"/> otherwise.
+    ///     Expects <see cref="object" />.
+    ///     Returns <see cref="Visibility.Visible" /> if it is not null.
+    ///     Returns <see cref="Visibility.Hidden" /> if it is null and "Hidden" was set as a parameter.
+    ///     Returns <see cref="Visibility.Collapsed" /> otherwise.
     /// </summary>
     [ValueConversion(typeof(object), typeof(Visibility))]
     public class ValueNullToInverseVisibilityConverter
@@ -19,11 +19,6 @@ namespace NKristek.Wpf.Converters
         private static IValueConverter _instance;
 
         public static IValueConverter Instance => _instance ?? (_instance = new ValueNullToInverseVisibilityConverter());
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return Instance;
-        }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -39,6 +34,11 @@ namespace NKristek.Wpf.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return Instance;
         }
     }
 }

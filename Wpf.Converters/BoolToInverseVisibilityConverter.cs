@@ -7,10 +7,10 @@ using System.Windows.Markup;
 namespace NKristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects a <see cref="bool"/>.
-    /// Returns <see cref="Visibility.Visible"/> if it is false. 
-    /// Returns <see cref="Visibility.Hidden"/> if true and "Hidden" was set as the parameter.
-    /// Returns <see cref="Visibility.Collapsed"/> otherwise.
+    ///     Expects a <see cref="bool" />.
+    ///     Returns <see cref="Visibility.Visible" /> if it is false.
+    ///     Returns <see cref="Visibility.Hidden" /> if true and "Hidden" was set as the parameter.
+    ///     Returns <see cref="Visibility.Collapsed" /> otherwise.
     /// </summary>
     [ValueConversion(typeof(bool), typeof(Visibility))]
     public class BoolToInverseVisibilityConverter
@@ -19,11 +19,6 @@ namespace NKristek.Wpf.Converters
         private static IValueConverter _instance;
 
         public static IValueConverter Instance => _instance ?? (_instance = new BoolToInverseVisibilityConverter());
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return Instance;
-        }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -45,8 +40,13 @@ namespace NKristek.Wpf.Converters
             if (!(value is Visibility))
                 return Binding.DoNothing;
 
-            var visibilityValue = (Visibility)value;
+            var visibilityValue = (Visibility) value;
             return visibilityValue != Visibility.Visible;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return Instance;
         }
     }
 }

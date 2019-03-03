@@ -6,9 +6,10 @@ using System.Windows.Markup;
 namespace NKristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects a <see cref="DateTime"/>.
-    /// Returns <see cref="string"/> representation. 
-    /// Optionally a parameter can be set which will be used as a parameter of the <see cref="DateTime.ToString(string)"/> method.
+    ///     Expects a <see cref="DateTime" />.
+    ///     Returns <see cref="string" /> representation.
+    ///     Optionally a parameter can be set which will be used as a parameter of the <see cref="DateTime.ToString(string)" />
+    ///     method.
     /// </summary>
     [ValueConversion(typeof(DateTime), typeof(string))]
     public class DateTimeToStringConverter
@@ -18,17 +19,12 @@ namespace NKristek.Wpf.Converters
 
         public static IValueConverter Instance => _instance ?? (_instance = new DateTimeToStringConverter());
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return Instance;
-        }
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is DateTime))
                 return Binding.DoNothing;
 
-            var dateTimeValue = (DateTime)value;
+            var dateTimeValue = (DateTime) value;
 
             if (parameter is string s && !String.IsNullOrEmpty(s))
                 return dateTimeValue.ToString(s);
@@ -41,7 +37,7 @@ namespace NKristek.Wpf.Converters
             if (!(value is string))
                 return Binding.DoNothing;
 
-            var stringValue = (string)value;
+            var stringValue = (string) value;
 
             if (parameter is string parameterAsString && !String.IsNullOrEmpty(parameterAsString))
             {
@@ -53,6 +49,11 @@ namespace NKristek.Wpf.Converters
             if (DateTime.TryParse(stringValue, out var dateTime))
                 return dateTime;
             return Binding.DoNothing;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return Instance;
         }
     }
 }

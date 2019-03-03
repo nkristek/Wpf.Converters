@@ -9,8 +9,9 @@ using System.Windows.Markup;
 namespace NKristek.Wpf.Converters
 {
     /// <summary>
-    /// Expects a list of <see cref="bool"/>.
-    /// Returns <see cref="Visibility.Visible"/> if any of them are true, otherwise <see cref="Visibility.Collapsed"/>. Set "Hidden" as the parameter to return <see cref="Visibility.Hidden"/>.
+    ///     Expects a list of <see cref="bool" />.
+    ///     Returns <see cref="Visibility.Visible" /> if any of them are true, otherwise <see cref="Visibility.Collapsed" />.
+    ///     Set "Hidden" as the parameter to return <see cref="Visibility.Hidden" />.
     /// </summary>
     [ValueConversion(typeof(IEnumerable<bool>), typeof(Visibility))]
     public class AnyBoolToVisibilityConverter
@@ -19,11 +20,6 @@ namespace NKristek.Wpf.Converters
         private static IMultiValueConverter _instance;
 
         public static IMultiValueConverter Instance => _instance ?? (_instance = new AnyBoolToVisibilityConverter());
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return Instance;
-        }
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -39,6 +35,11 @@ namespace NKristek.Wpf.Converters
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return Instance;
         }
     }
 }
