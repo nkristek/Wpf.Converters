@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -32,7 +31,7 @@ namespace NKristek.Wpf.Converters
 
                 if (args.NewItems != null)
                     foreach (IValueConverter newConverter in args.NewItems)
-                        _valueConversionAttributes[newConverter] = newConverter.GetType().GetCustomAttributes<ValueConversionAttribute>().SingleOrDefault();
+                        _valueConversionAttributes[newConverter] = newConverter.GetType().GetCustomAttributes(true).OfType<ValueConversionAttribute>().FirstOrDefault();
             };
         }
 
