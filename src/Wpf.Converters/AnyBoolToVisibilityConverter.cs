@@ -19,6 +19,9 @@ namespace NKristek.Wpf.Converters
     {
         private static IMultiValueConverter _instance;
 
+        /// <summary>
+        /// Static instance of this converter.
+        /// </summary>
         public static IMultiValueConverter Instance => _instance ?? (_instance = new AnyBoolToVisibilityConverter());
 
         /// <inheritdoc />

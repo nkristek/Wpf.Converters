@@ -16,6 +16,9 @@ namespace NKristek.Wpf.Converters
     {
         private static IValueConverter _instance;
 
+        /// <summary>
+        /// Static instance of this converter.
+        /// </summary>
         public static IValueConverter Instance => _instance ?? (_instance = new ICollectionNullOrEmptyToInverseBoolConverter());
 
         /// <inheritdoc />

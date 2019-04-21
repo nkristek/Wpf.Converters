@@ -37,6 +37,9 @@ namespace NKristek.Wpf.Converters
             };
         }
 
+        /// <summary>
+        /// Collection of converters which should be executed in succession.
+        /// </summary>
         public ObservableCollection<IValueConverter> Converters { get; } = new ObservableCollection<IValueConverter>();
 
         /// <inheritdoc />
