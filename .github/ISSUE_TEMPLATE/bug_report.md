@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. Windows 10 Pro 1803]
- - .NET Version: [e.g. .NET Framework 4.5]
+ - .NET version: [e.g. .NET Framework 4.5]
  - Platform: [x86 / x64]
 
 **Additional context**
