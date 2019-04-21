@@ -8,6 +8,7 @@ using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+#if !NET35
     /// <summary>
     ///     Represents a chain of <see cref="IValueConverter" />s to be executed in succession.
     ///     Please note, that only converters with a <see cref="ValueConversionAttribute" /> can use the targetType parameter.
@@ -88,4 +89,5 @@ namespace NKristek.Wpf.Converters
             return output;
         }
     }
+#endif
 }

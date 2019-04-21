@@ -14,7 +14,11 @@ namespace NKristek.Wpf.Converters
     /// </summary>
     [ValueConversion(typeof(bool), typeof(Visibility))]
     public class BoolToVisibilityConverter
+#if NET35
+        : IValueConverter
+#else
         : MarkupExtension, IValueConverter
+#endif
     {
         private static IValueConverter _instance;
 
@@ -49,10 +53,12 @@ namespace NKristek.Wpf.Converters
             return visibilityValue == Visibility.Visible;
         }
 
+#if !NET35
         /// <inheritdoc />
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return Instance;
         }
+#endif
     }
 }

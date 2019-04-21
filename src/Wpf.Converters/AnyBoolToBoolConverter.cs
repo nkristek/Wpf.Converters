@@ -13,7 +13,11 @@ namespace NKristek.Wpf.Converters
     /// </summary>
     [ValueConversion(typeof(IEnumerable<bool>), typeof(bool))]
     public class AnyBoolToBoolConverter
+#if NET35
+        : IMultiValueConverter
+#else
         : MarkupExtension, IMultiValueConverter
+#endif
     {
         private static IMultiValueConverter _instance;
 
@@ -34,10 +38,12 @@ namespace NKristek.Wpf.Converters
             throw new NotSupportedException();
         }
 
+#if !NET35
         /// <inheritdoc />
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return Instance;
         }
+#endif
     }
 }

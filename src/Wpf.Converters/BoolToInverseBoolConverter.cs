@@ -11,7 +11,11 @@ namespace NKristek.Wpf.Converters
     /// </summary>
     [ValueConversion(typeof(bool), typeof(bool))]
     public class BoolToInverseBoolConverter
+#if NET35
+        : IValueConverter
+#else
         : MarkupExtension, IValueConverter
+#endif
     {
         private static IValueConverter _instance;
 
@@ -36,10 +40,12 @@ namespace NKristek.Wpf.Converters
             return Convert(value, targetType, parameter, culture);
         }
 
+#if !NET35
         /// <inheritdoc />
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return Instance;
         }
+#endif
     }
 }

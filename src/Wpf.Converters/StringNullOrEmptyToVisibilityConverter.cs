@@ -14,7 +14,11 @@ namespace NKristek.Wpf.Converters
     /// </summary>
     [ValueConversion(typeof(string), typeof(Visibility))]
     public class StringNullOrEmptyToVisibilityConverter
+#if NET35
+        : IValueConverter
+#else
         : MarkupExtension, IValueConverter
+#endif
     {
         private static IValueConverter _instance;
 
@@ -45,10 +49,12 @@ namespace NKristek.Wpf.Converters
             throw new NotSupportedException();
         }
 
+#if !NET35
         /// <inheritdoc />
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return Instance;
         }
+#endif
     }
 }
