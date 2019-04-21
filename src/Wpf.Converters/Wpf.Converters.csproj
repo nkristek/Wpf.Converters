@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net40;net45;net451;net452;net46;net461;net462;net47;net471;net472</TargetFrameworks>
+    <RootNamespace>NKristek.Wpf.Converters</RootNamespace>
+    <AssemblyName>NKristek.Wpf.Converters</AssemblyName>
+    <Version>1.6</Version>
+    <Description>A collection of often used converters to write a WPF based application</Description>
+    <Company>nkristek</Company>
+    <Authors>nkristek</Authors>
+    <Product>Wpf.Converters</Product>
+    <PackageId>NKristek.Wpf.Converters</PackageId>
+    <Copyright>Copyright © 2019 Niclas Kristek</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/nkristek/Wpf.Converters</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nkristek/Wpf.Converters.git</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags></PackageTags>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>1.6.0.0</AssemblyVersion>
+    <FileVersion>1.6.0.0</FileVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\net40\NKristek.Wpf.Converters.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
+  </ItemGroup>
+</Project>

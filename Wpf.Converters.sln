@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Converters", "Wpf.Converters\Wpf.Converters.csproj", "{9E5BC521-4539-41A3-B968-2701B3F5A00D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Converters", "src\Wpf.Converters\Wpf.Converters.csproj", "{9E5BC521-4539-41A3-B968-2701B3F5A00D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Converters.Tests", "Wpf.Converters.Tests\Wpf.Converters.Tests.csproj", "{78739A48-BF71-4C78-A05D-503F719A8546}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Converters.Tests", "test\Wpf.Converters.Tests\Wpf.Converters.Tests.csproj", "{78739A48-BF71-4C78-A05D-503F719A8546}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{886A98B4-DFE8-407A-BE9E-55CDC45FAF60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{72D45CED-B50C-4ADE-92C1-32E762A76A0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9E5BC521-4539-41A3-B968-2701B3F5A00D} = {886A98B4-DFE8-407A-BE9E-55CDC45FAF60}
+		{78739A48-BF71-4C78-A05D-503F719A8546} = {72D45CED-B50C-4ADE-92C1-32E762A76A0F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0BB8710-6CF9-4EBB-9824-4FCBE68C3790}
