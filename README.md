@@ -3,7 +3,7 @@
 [![Build Status](https://dev.azure.com/nkristek/Wpf.Converters/_apis/build/status/nkristek.Wpf.Converters?branchName=master)](https://dev.azure.com/nkristek/Wpf.Converters/_build/latest?definitionId=3&branchName=master)
 [![Code coverage](https://img.shields.io/azure-devops/coverage/nkristek/Wpf.Converters/3.svg)](https://dev.azure.com/nkristek/Wpf.Converters/_build/latest?definitionId=3&branchName=master)
 [![NuGet version](https://img.shields.io/nuget/v/NKristek.Wpf.Converters.svg)](https://www.nuget.org/packages/NKristek.Wpf.Converters/)
-![.NET Framework version: >= 4.0](https://img.shields.io/badge/.NET%20Framework-%3E%3D%204.0-green.svg)
+![.NET Framework version: >= 3.5](https://img.shields.io/badge/.NET%20Framework-%3E%3D%203.5-green.svg)
 [![GitHub license](https://img.shields.io/github/license/nkristek/Wpf.Converters.svg)](https://github.com/nkristek/Wpf.Converters/blob/master/LICENSE)
 
 This library contains a collection of often used converters to write a WPF based application.
@@ -19,7 +19,7 @@ Import it via:
 xmlns:c="clr-namespace:NKristek.Wpf.Converters;assembly=NKristek.Wpf.Converters"
 ```
 
-You can use a converter from this library either by using the MarkupExtension:
+You can use a converter from this library either by using the MarkupExtension*:
 ```xaml
 <Label Content="{Binding Value}"
        Visibility="{Binding Value, Converter={c:ValueNotNullToVisibilityConverter}}" />
@@ -39,7 +39,7 @@ or of course create instances in the views:
        Visibility="{Binding Value, Converter={StaticResource ValueNotNullToVisibilityConverter}}" />
 ```
 
-You can also use the ```ValueConverterChain``` converter, which executes the given converters in succession. Please note, that the TargetType is only correctly set, when the ```ValueConversionAttribute``` is set on the ```IValueConverter```.
+You can also use the ```ValueConverterChain``` converter*, which executes the given converters in succession. Please note, that the TargetType is only correctly set, when the ```ValueConversionAttribute``` is set on the ```IValueConverter```.
 
 ```xaml
 <c:ValueConverterChain x:Key="ValueNullToInverseBoolConverter">
@@ -48,6 +48,8 @@ You can also use the ```ValueConverterChain``` converter, which executes the giv
 </c:ValueConverterChain>
 ```
 The above use of the ```ValueConverterChain``` would be equivalent to the ```ValueNullToInverseBoolConverter```.
+
+*: Only available if target framework is >= .NET 4.0.
 
 ## Overview
 
