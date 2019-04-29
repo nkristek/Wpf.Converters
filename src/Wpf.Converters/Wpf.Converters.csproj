@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462;net47;net471;net472</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <RootNamespace>NKristek.Wpf.Converters</RootNamespace>
     <AssemblyName>NKristek.Wpf.Converters</AssemblyName>
     <Version>1.6</Version>
@@ -24,7 +25,6 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <LangVersion>latest</LangVersion>
     <DocumentationFile>bin\Release\net40\NKristek.Wpf.Converters.xml</DocumentationFile>
   </PropertyGroup>
 
