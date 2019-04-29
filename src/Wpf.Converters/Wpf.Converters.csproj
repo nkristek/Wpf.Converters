@@ -18,10 +18,7 @@
     <PackageTags>Converter IValueConverter IMultiValueConverter WPF XAML</PackageTags>
     <PackageReleaseNotes>This release adds support for .NET Framework 3.5 and multi targeting to every .NET Framework version up to 4.7.2.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\net40\NKristek.Wpf.Converters.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
