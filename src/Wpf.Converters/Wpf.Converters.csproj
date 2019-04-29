@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/nkristek/Wpf.Converters.git</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryType>git</RepositoryType>
-    <PackageTags></PackageTags>
+    <PackageTags>Converter IValueConverter IMultiValueConverter WPF XAML</PackageTags>
     <PackageReleaseNotes>This release adds support for .NET Framework 3.5 and multi targeting to every .NET Framework version up to 4.7.2.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyVersion>1.6.0.0</AssemblyVersion>
