@@ -8,7 +8,6 @@
     <Description>A collection of often used converters to write a WPF based application</Description>
     <Company>nkristek</Company>
     <Authors>nkristek</Authors>
-    <Product>Wpf.Converters</Product>
     <PackageId>NKristek.Wpf.Converters</PackageId>
     <Copyright>Copyright © 2019 Niclas Kristek</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -19,9 +18,6 @@
     <PackageTags>Converter IValueConverter IMultiValueConverter WPF XAML</PackageTags>
     <PackageReleaseNotes>This release adds support for .NET Framework 3.5 and multi targeting to every .NET Framework version up to 4.7.2.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>1.6.0.0</AssemblyVersion>
-    <FileVersion>1.6.0.0</FileVersion>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
