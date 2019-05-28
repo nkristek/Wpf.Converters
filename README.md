@@ -10,7 +10,7 @@ This library contains a collection of often used converters to write a WPF based
 
 ## Installation
 
-The recommended way to use this library is via [Nuget](https://www.nuget.org/packages/nkristek.Wpf.Converters/), but you also can either download the DLL from the latest [release](https://github.com/nkristek/Wpf.Converters/releases/latest) or compile it yourself.
+The recommended way to use this library is via [Nuget](https://www.nuget.org/packages/nkristek.Wpf.Converters/).
 
 ## Getting started
 
