@@ -1,5 +1,3 @@
-<!--- Provide a general summary of your changes in the Title above -->
-
 ## Summary
 <!-- Summarize your changes briefly -->
 
