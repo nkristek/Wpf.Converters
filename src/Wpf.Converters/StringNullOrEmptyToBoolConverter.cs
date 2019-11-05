@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     Expects <see cref="string" />.
-    ///     Returns true if it is null or empty.
+    /// <para>Expects a <see cref="string" />.</para>
+    /// <para>Returns <see langword="true"/> if the value is <see langword="null"/> or empty.</para>
+    /// <para>Returns <see langword="false"/> otherwise.</para>
     /// </summary>
     [ValueConversion(typeof(string), typeof(bool))]
     public class StringNullOrEmptyToBoolConverter
@@ -17,7 +20,7 @@ namespace NKristek.Wpf.Converters
         : MarkupExtension, IValueConverter
 #endif
     {
-        private static IValueConverter _instance;
+        private static IValueConverter? _instance;
 
         /// <summary>
         /// Static instance of this converter.
@@ -25,24 +28,24 @@ namespace NKristek.Wpf.Converters
         public static IValueConverter Instance => _instance ?? (_instance = new StringNullOrEmptyToBoolConverter());
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             if (value != null && !(value is string))
-                return Binding.DoNothing;
+                return DependencyProperty.UnsetValue;
 
-            var stringValue = (string) value;
-            return String.IsNullOrEmpty(stringValue);
+            return String.IsNullOrEmpty(value as string);
         }
 
         /// <inheritdoc />
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        /// <exception cref="NotSupportedException">This operation is not supported.</exception>
+        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotSupportedException();
         }
 
 #if !NET35
         /// <inheritdoc />
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public override object ProvideValue(IServiceProvider? serviceProvider)
         {
             return Instance;
         }

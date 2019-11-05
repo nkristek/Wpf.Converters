@@ -6,11 +6,12 @@ using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     Expects a <see cref="bool" />.
-    ///     Returns <see cref="Visibility.Visible" /> if it is true.
-    ///     Returns <see cref="Visibility.Hidden" /> if false and "Hidden" was set as the parameter.
-    ///     Returns <see cref="Visibility.Collapsed" /> otherwise.
+    /// <para>Expects a <see cref="bool" />.</para>
+    /// <para>Returns <see cref="Visibility.Visible" /> if it is <see langword="true"/>.</para>
+    /// <para>Returns <see cref="Visibility.Hidden" /> if <see langword="false"/> and "Hidden" was set as the parameter.</para>
+    /// <para>Returns <see cref="Visibility.Collapsed" /> otherwise.</para>
     /// </summary>
     [ValueConversion(typeof(bool), typeof(Visibility))]
     public class BoolToVisibilityConverter
@@ -20,7 +21,7 @@ namespace NKristek.Wpf.Converters
         : MarkupExtension, IValueConverter
 #endif
     {
-        private static IValueConverter _instance;
+        private static IValueConverter? _instance;
 
         /// <summary>
         /// Static instance of this converter.
@@ -28,12 +29,11 @@ namespace NKristek.Wpf.Converters
         public static IValueConverter Instance => _instance ?? (_instance = new BoolToVisibilityConverter());
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
-            if (!(value is bool))
-                return Binding.DoNothing;
+            if (!(value is bool boolValue))
+                return DependencyProperty.UnsetValue;
 
-            var boolValue = (bool) value;
             if (boolValue)
                 return Visibility.Visible;
 
@@ -44,18 +44,17 @@ namespace NKristek.Wpf.Converters
         }
 
         /// <inheritdoc />
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
-            if (!(value is Visibility))
-                return Binding.DoNothing;
+            if (!(value is Visibility visibilityValue))
+                return DependencyProperty.UnsetValue;
 
-            var visibilityValue = (Visibility) value;
             return visibilityValue == Visibility.Visible;
         }
 
 #if !NET35
         /// <inheritdoc />
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public override object ProvideValue(IServiceProvider? serviceProvider)
         {
             return Instance;
         }

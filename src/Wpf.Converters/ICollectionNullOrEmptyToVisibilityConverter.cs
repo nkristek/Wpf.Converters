@@ -7,11 +7,12 @@ using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     Expects <see cref="ICollection" />.
-    ///     Returns <see cref="Visibility.Visible" /> if it is null or empty.
-    ///     Returns <see cref="Visibility.Hidden" /> if it is not null or empty "Hidden" was set as a parameter.
-    ///     Returns <see cref="Visibility.Collapsed" /> otherwise.
+    /// <para>Expects an instance implementing <see cref="ICollection" />.</para>
+    /// <para>Returns <see cref="Visibility.Visible" /> if the value is <see langword="null"/> or empty.</para>
+    /// <para>Returns <see cref="Visibility.Hidden" /> if the value is not <see langword="null"/> or empty and "Hidden" was set as a parameter.</para>
+    /// <para>Returns <see cref="Visibility.Collapsed" /> otherwise.</para>
     /// </summary>
     [ValueConversion(typeof(ICollection), typeof(Visibility))]
     public class ICollectionNullOrEmptyToVisibilityConverter
@@ -21,7 +22,7 @@ namespace NKristek.Wpf.Converters
         : MarkupExtension, IValueConverter
 #endif
     {
-        private static IValueConverter _instance;
+        private static IValueConverter? _instance;
 
         /// <summary>
         /// Static instance of this converter.
@@ -29,13 +30,12 @@ namespace NKristek.Wpf.Converters
         public static IValueConverter Instance => _instance ?? (_instance = new ICollectionNullOrEmptyToVisibilityConverter());
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             if (value != null && !(value is ICollection))
-                return Binding.DoNothing;
+                return DependencyProperty.UnsetValue;
 
-            var collectionValue = (ICollection) value;
-            if (collectionValue == null || collectionValue.Count == 0)
+            if (!(value is ICollection collectionValue) || collectionValue.Count == 0)
                 return Visibility.Visible;
 
             if ("Hidden".Equals(parameter as string, StringComparison.OrdinalIgnoreCase))
@@ -45,14 +45,15 @@ namespace NKristek.Wpf.Converters
         }
 
         /// <inheritdoc />
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        /// <exception cref="NotSupportedException">This operation is not supported.</exception>
+        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotSupportedException();
         }
 
 #if !NET35
         /// <inheritdoc />
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public override object ProvideValue(IServiceProvider? serviceProvider)
         {
             return Instance;
         }

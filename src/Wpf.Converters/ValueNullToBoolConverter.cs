@@ -5,9 +5,11 @@ using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     Expects <see cref="object" />.
-    ///     Returns true if it is null.
+    /// <para>Expects an <see cref="object" />.</para>
+    /// <para>Returns <see langword="true"/> if the value is <see langword="null"/>.</para>
+    /// <para>Returns <see langword="false"/> otherwise.</para>
     /// </summary>
     [ValueConversion(typeof(object), typeof(bool))]
     public class ValueNullToBoolConverter
@@ -17,7 +19,7 @@ namespace NKristek.Wpf.Converters
         : MarkupExtension, IValueConverter
 #endif
     {
-        private static IValueConverter _instance;
+        private static IValueConverter? _instance;
 
         /// <summary>
         /// Static instance of this converter.
@@ -25,20 +27,21 @@ namespace NKristek.Wpf.Converters
         public static IValueConverter Instance => _instance ?? (_instance = new ValueNullToBoolConverter());
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             return value == null;
         }
 
         /// <inheritdoc />
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        /// <exception cref="NotSupportedException">This operation is not supported.</exception>
+        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotSupportedException();
         }
 
 #if !NET35
         /// <inheritdoc />
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public override object ProvideValue(IServiceProvider? serviceProvider)
         {
             return Instance;
         }

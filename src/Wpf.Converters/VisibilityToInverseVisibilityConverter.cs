@@ -6,10 +6,12 @@ using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     Expects <see cref="Visibility" />.
-    ///     Returns the opposite, if parameter is set to hidden, it will return <see cref="Visibility.Hidden" /> if
-    ///     encountering <see cref="Visibility.Visible" />
+    /// <para>Expects a <see cref="Visibility" />.</para>
+    /// <para>Returns <see cref="Visibility.Visible" /> if the value is <see cref="Visibility.Collapsed" /> or <see cref="Visibility.Hidden" />.</para>
+    /// <para>Returns <see cref="Visibility.Hidden" /> if the value is <see cref="Visibility.Visible" /> and "Hidden" was set as a parameter.</para>
+    /// <para>Returns <see cref="Visibility.Collapsed" /> otherwise.</para>
     /// </summary>
     [ValueConversion(typeof(Visibility), typeof(Visibility))]
     public class VisibilityToInverseVisibilityConverter
@@ -19,7 +21,7 @@ namespace NKristek.Wpf.Converters
         : MarkupExtension, IValueConverter
 #endif
     {
-        private static IValueConverter _instance;
+        private static IValueConverter? _instance;
 
         /// <summary>
         /// Static instance of this converter.
@@ -27,29 +29,29 @@ namespace NKristek.Wpf.Converters
         public static IValueConverter Instance => _instance ?? (_instance = new VisibilityToInverseVisibilityConverter());
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
-            if (!(value is Visibility))
-                return Binding.DoNothing;
+            if (!(value is Visibility visibilityValue))
+                return DependencyProperty.UnsetValue;
 
-            var visibilityValue = (Visibility) value;
             if (visibilityValue != Visibility.Visible)
                 return Visibility.Visible;
 
             if ("Hidden".Equals(parameter as string, StringComparison.OrdinalIgnoreCase))
                 return Visibility.Hidden;
+
             return Visibility.Collapsed;
         }
 
         /// <inheritdoc />
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             return Convert(value, targetType, parameter, culture);
         }
 
 #if !NET35
         /// <inheritdoc />
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public override object ProvideValue(IServiceProvider? serviceProvider)
         {
             return Instance;
         }

@@ -3,41 +3,24 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
 #if !NET35
+    /// <inheritdoc />
     /// <summary>
-    ///     Represents a chain of <see cref="IValueConverter" />s to be executed in succession.
-    ///     Please note, that only converters with a <see cref="ValueConversionAttribute" /> can use the targetType parameter.
-    ///     The idea for this converter comes from reading
-    ///     https://www.codeproject.com/Articles/15061/Piping-Value-Converters-in-WPF
+    /// Represents a chain of multiple <see cref="IValueConverter" /> to be executed in succession.
     /// </summary>
+    /// <remarks>
+    /// Only converters with a <see cref="ValueConversionAttribute" /> can use the targetType parameter.
+    /// </remarks>
     [ContentProperty("Converters")]
-    [ContentWrapper(typeof(ObservableCollection<IValueConverter>))]
-    public class ValueConverterChain : IValueConverter
+    public class ValueConverterChain
+        : IValueConverter
     {
-        private readonly Dictionary<IValueConverter, ValueConversionAttribute> _valueConversionAttributes =
-            new Dictionary<IValueConverter, ValueConversionAttribute>();
-
-        /// <inheritdoc />
-        public ValueConverterChain()
-        {
-            Converters.CollectionChanged += (sender, args) =>
-            {
-                if (args.OldItems != null)
-                    foreach (IValueConverter oldConverter in args.OldItems)
-                        _valueConversionAttributes.Remove(oldConverter);
-
-                if (args.NewItems != null)
-                    foreach (IValueConverter newConverter in args.NewItems)
-                        _valueConversionAttributes[newConverter] =
-                            newConverter.GetType().GetCustomAttributes(true).OfType<ValueConversionAttribute>().FirstOrDefault();
-            };
-        }
-
         /// <summary>
         /// Collection of converters which should be executed in succession.
         /// </summary>
@@ -75,14 +58,14 @@ namespace NKristek.Wpf.Converters
                 }
                 else
                 {
-                    var valueConversionAttribute = _valueConversionAttributes.ContainsKey(converter) ? _valueConversionAttributes[converter] : null;
+                    var valueConversionAttribute = converter.GetType().GetCustomAttributes(true).OfType<ValueConversionAttribute>().SingleOrDefault();
                     var currentTargetType = reversed ? valueConversionAttribute?.SourceType : valueConversionAttribute?.TargetType;
                     output = reversed
                         ? converter.ConvertBack(output, currentTargetType, parameter, culture)
                         : converter.Convert(output, currentTargetType, parameter, culture);
                 }
 
-                if (output == Binding.DoNothing)
+                if (output == DependencyProperty.UnsetValue || output == Binding.DoNothing)
                     break;
             }
 

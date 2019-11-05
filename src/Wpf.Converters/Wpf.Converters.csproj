@@ -1,10 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462;net47;net471;net472</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
+    <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;netcoreapp3.0</TargetFrameworks>
+    <UseWpf>true</UseWpf>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
     <RootNamespace>NKristek.Wpf.Converters</RootNamespace>
     <AssemblyName>NKristek.Wpf.Converters</AssemblyName>
-    <Version>1.6</Version>
+    <Version>2.0</Version>
     <Description>A collection of often used converters to write a WPF based application</Description>
     <Company>nkristek</Company>
     <Authors>nkristek</Authors>
@@ -16,16 +18,32 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Converter IValueConverter IMultiValueConverter WPF XAML</PackageTags>
-    <PackageReleaseNotes>This release adds support for .NET Framework 3.5 and multi targeting to every .NET Framework version up to 4.7.2.</PackageReleaseNotes>
+    <PackageReleaseNotes>This release adds support for .NET Core 3.0 and C#8 nullable reference types.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp3.0'">
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net35' ">
+
+  <ItemGroup Condition="'$(TargetFramework)' != 'net35' And '$(TargetFramework)' != 'netcoreapp3.0'">
     <Reference Include="System.Xaml" />
-</ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="SauceControl.InheritDoc" Version="0.4.0" PrivateAssets="all"/>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);IDT004</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
+    <NoWarn>$(NoWarn);IDT002</NoWarn>
+  </PropertyGroup>
 </Project>

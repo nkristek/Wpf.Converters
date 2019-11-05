@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     Expects <see cref="ICollection" />.
-    ///     Returns true if it is null or empty.
+    /// <para>Expects an instance implementing <see cref="ICollection" />.</para>
+    /// <para>Returns <see langword="true"/> if the value is <see langword="null"/> or empty.</para>
+    /// <para>Returns <see langword="false"/> otherwise.</para>
     /// </summary>
     [ValueConversion(typeof(ICollection), typeof(bool))]
     public class ICollectionNullOrEmptyToBoolConverter
@@ -18,7 +21,7 @@ namespace NKristek.Wpf.Converters
         : MarkupExtension, IValueConverter
 #endif
     {
-        private static IValueConverter _instance;
+        private static IValueConverter? _instance;
 
         /// <summary>
         /// Static instance of this converter.
@@ -26,24 +29,24 @@ namespace NKristek.Wpf.Converters
         public static IValueConverter Instance => _instance ?? (_instance = new ICollectionNullOrEmptyToBoolConverter());
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             if (value != null && !(value is ICollection))
-                return Binding.DoNothing;
+                return DependencyProperty.UnsetValue;
 
-            var collectionValue = (ICollection) value;
-            return collectionValue == null || collectionValue.Count == 0;
+            return !(value is ICollection collectionValue) || collectionValue.Count == 0;
         }
 
         /// <inheritdoc />
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        /// <exception cref="NotSupportedException">This operation is not supported.</exception>
+        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotSupportedException();
         }
 
 #if !NET35
         /// <inheritdoc />
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public override object ProvideValue(IServiceProvider? serviceProvider)
         {
             return Instance;
         }

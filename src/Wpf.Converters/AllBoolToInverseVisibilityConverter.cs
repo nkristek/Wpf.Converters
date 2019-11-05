@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -8,12 +7,14 @@ using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     Expects a list of <see cref="bool" />.
-    ///     Returns <see cref="Visibility.Visible" /> if not all elements in the list are true, otherwise
-    ///     <see cref="Visibility.Collapsed" />. Set "Hidden" as the parameter to return <see cref="Visibility.Hidden" />.
+    /// <para>Expects a sequence of <see cref="bool" />.</para>
+    /// <para>Returns <see cref="Visibility.Visible" /> if any value is <see langword="false"/>.</para>
+    /// <para>Returns <see cref="Visibility.Collapsed" /> otherwise.</para>
+    /// <para>Set "Hidden" as the parameter to return <see cref="Visibility.Hidden" /> instead of <see cref="Visibility.Collapsed"/>.</para>
     /// </summary>
-    [ValueConversion(typeof(IEnumerable<bool>), typeof(bool))]
+    [ValueConversion(typeof(bool[]), typeof(Visibility))]
     public class AllBoolToInverseVisibilityConverter
 #if NET35
         : IMultiValueConverter
@@ -21,7 +22,7 @@ namespace NKristek.Wpf.Converters
         : MarkupExtension, IMultiValueConverter
 #endif
     {
-        private static IMultiValueConverter _instance;
+        private static IMultiValueConverter? _instance;
 
         /// <summary>
         /// Static instance of this converter.
@@ -29,8 +30,11 @@ namespace NKristek.Wpf.Converters
         public static IMultiValueConverter Instance => _instance ?? (_instance = new AllBoolToInverseVisibilityConverter());
 
         /// <inheritdoc />
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object? parameter, CultureInfo? culture)
         {
+            if (values == null)
+                return DependencyProperty.UnsetValue;
+
             if (!values.All(v => v is bool b && b))
                 return Visibility.Visible;
 
@@ -41,14 +45,15 @@ namespace NKristek.Wpf.Converters
         }
 
         /// <inheritdoc />
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        /// <exception cref="NotSupportedException">This operation is not supported.</exception>
+        public object[] ConvertBack(object value, Type[] targetTypes, object? parameter, CultureInfo? culture)
         {
             throw new NotSupportedException();
         }
 
 #if !NET35
         /// <inheritdoc />
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public override object ProvideValue(IServiceProvider? serviceProvider)
         {
             return Instance;
         }

@@ -1,17 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace NKristek.Wpf.Converters
 {
+    /// <inheritdoc />
     /// <summary>
-    ///     Expects a list of <see cref="bool" />.
-    ///     Returns true if any of them are true.
+    /// <para>Expects a sequence of <see cref="bool" />.</para>
+    /// <para>Returns <see langword="true"/> if any value is <see langword="true"/>.</para>
+    /// <para>Returns <see langword="false"/> otherwise.</para>
     /// </summary>
-    [ValueConversion(typeof(IEnumerable<bool>), typeof(bool))]
+    [ValueConversion(typeof(bool[]), typeof(bool))]
     public class AnyBoolToBoolConverter
 #if NET35
         : IMultiValueConverter
@@ -19,7 +21,7 @@ namespace NKristek.Wpf.Converters
         : MarkupExtension, IMultiValueConverter
 #endif
     {
-        private static IMultiValueConverter _instance;
+        private static IMultiValueConverter? _instance;
 
         /// <summary>
         /// Static instance of this converter.
@@ -27,20 +29,24 @@ namespace NKristek.Wpf.Converters
         public static IMultiValueConverter Instance => _instance ?? (_instance = new AnyBoolToBoolConverter());
 
         /// <inheritdoc />
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object? parameter, CultureInfo? culture)
         {
+            if (values == null)
+                return DependencyProperty.UnsetValue;
+
             return values.Any(v => v is bool b && b);
         }
 
         /// <inheritdoc />
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        /// <exception cref="NotSupportedException">This operation is not supported.</exception>
+        public object[] ConvertBack(object value, Type[] targetTypes, object? parameter, CultureInfo? culture)
         {
             throw new NotSupportedException();
         }
 
 #if !NET35
         /// <inheritdoc />
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public override object ProvideValue(IServiceProvider? serviceProvider)
         {
             return Instance;
         }
