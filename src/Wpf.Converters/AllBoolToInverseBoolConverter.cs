@@ -29,7 +29,7 @@ namespace NKristek.Wpf.Converters
         public static IMultiValueConverter Instance => _instance ?? (_instance = new AllBoolToInverseBoolConverter());
 
         /// <inheritdoc />
-        public object Convert(object[] values, Type targetType, object? parameter, CultureInfo? culture)
+        public virtual object Convert(object[] values, Type targetType, object? parameter, CultureInfo? culture)
         {
             if (values == null)
                 return DependencyProperty.UnsetValue;
@@ -39,7 +39,7 @@ namespace NKristek.Wpf.Converters
 
         /// <inheritdoc />
         /// <exception cref="NotSupportedException">This operation is not supported.</exception>
-        public object[] ConvertBack(object value, Type[] targetTypes, object? parameter, CultureInfo? culture)
+        public virtual object[] ConvertBack(object value, Type[] targetTypes, object? parameter, CultureInfo? culture)
         {
             throw new NotSupportedException();
         }

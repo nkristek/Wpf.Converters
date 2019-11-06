@@ -29,7 +29,7 @@ namespace NKristek.Wpf.Converters
         public static IValueConverter Instance => _instance ?? (_instance = new ValueNullToInverseVisibilityConverter());
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
+        public virtual object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             if (value != null)
                 return Visibility.Visible;
@@ -42,7 +42,7 @@ namespace NKristek.Wpf.Converters
 
         /// <inheritdoc />
         /// <exception cref="NotSupportedException">This operation is not supported.</exception>
-        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
+        public virtual object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotSupportedException();
         }

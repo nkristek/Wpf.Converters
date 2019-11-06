@@ -28,7 +28,7 @@ namespace NKristek.Wpf.Converters
         public static IValueConverter Instance => _instance ?? (_instance = new DateTimeToStringConverter());
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
+        public virtual object Convert(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             if (!(value is DateTime dateTimeValue))
                 return DependencyProperty.UnsetValue;
@@ -40,7 +40,7 @@ namespace NKristek.Wpf.Converters
         }
 
         /// <inheritdoc />
-        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
+        public virtual object ConvertBack(object value, Type targetType, object? parameter, CultureInfo? culture)
         {
             if (!(value is string stringValue))
                 return DependencyProperty.UnsetValue;

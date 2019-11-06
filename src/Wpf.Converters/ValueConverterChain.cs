@@ -27,13 +27,13 @@ namespace NKristek.Wpf.Converters
         public ObservableCollection<IValueConverter> Converters { get; } = new ObservableCollection<IValueConverter>();
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return ExecuteConverters(Converters, value, targetType, parameter, culture, false);
         }
 
         /// <inheritdoc />
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return ExecuteConverters(Converters, value, targetType, parameter, culture, true);
         }
