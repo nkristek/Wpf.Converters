@@ -45,5 +45,6 @@
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
     <NoWarn>$(NoWarn);IDT002</NoWarn>
+    <FrameworkPathOverride>$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
   </PropertyGroup>
 </Project>

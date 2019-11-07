@@ -1,6 +1,6 @@
 # Wpf.Converters
 
-[![Build Status](https://dev.azure.com/nkristek/Wpf.Converters/_apis/build/status/nkristek.Wpf.Converters?branchName=master)](https://dev.azure.com/nkristek/Wpf.Converters/_build/latest?definitionId=3&branchName=master)
+[![CI Status](https://github.com/nkristek/Wpf.Converters/workflows/CI/badge.svg)](https://github.com/nkristek/Wpf.Converters/actions)
 [![NuGet version](https://img.shields.io/nuget/v/NKristek.Wpf.Converters.svg)](https://www.nuget.org/packages/NKristek.Wpf.Converters/)
 ![.NET Framework version: >= 3.5](https://img.shields.io/badge/.NET%20Framework-%3E%3D%203.5-green.svg)
 [![GitHub license](https://img.shields.io/github/license/nkristek/Wpf.Converters.svg)](https://github.com/nkristek/Wpf.Converters/blob/master/LICENSE)
@@ -10,6 +10,10 @@ This library contains a collection of often used converters to write a WPF based
 ## Installation
 
 The recommended way to use this library is via [Nuget](https://www.nuget.org/packages/nkristek.Wpf.Converters/).
+
+Currently supported frameworks:
+- .NET Framework 3.5 or higher
+- .NET Core 3.0 or higher
 
 ## Getting started
 
