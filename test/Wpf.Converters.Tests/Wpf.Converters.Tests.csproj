@@ -29,6 +29,6 @@
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>Wpf.Converters.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Wpf.Converters.Tests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 </Project>
