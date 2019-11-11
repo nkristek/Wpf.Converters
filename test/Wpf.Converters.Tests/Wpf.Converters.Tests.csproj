@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <!-- Build settings -->
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-
+    <Features>strict</Features>
     <IsPackable>false</IsPackable>
-
-    <AssemblyName>NKristek.Smaragd.Tests</AssemblyName>
-    <RootNamespace>NKristek.Smaragd.Tests</RootNamespace>
+    <AssemblyName>NKristek.Wpf.Converters.Tests</AssemblyName>
+    <RootNamespace>NKristek.Wpf.Converters.Tests</RootNamespace>
   </PropertyGroup>
 
+  <!-- Reference unit test dependencies -->
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -20,8 +20,15 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- Reference to assembly to test -->
   <ItemGroup>
     <ProjectReference Include="..\..\src\Wpf.Converters\Wpf.Converters.csproj" />
   </ItemGroup>
 
+  <!-- Code Signing (needed for InternalsVisibleTo) -->
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>Wpf.Converters.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
 </Project>

@@ -1,49 +1,73 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <!-- Build settings -->
   <PropertyGroup>
     <TargetFrameworks>net35;net40;netcoreapp3.0</TargetFrameworks>
     <UseWpf>true</UseWpf>
     <LangVersion>8.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
-    <RootNamespace>NKristek.Wpf.Converters</RootNamespace>
-    <AssemblyName>NKristek.Wpf.Converters</AssemblyName>
-    <Version>2.0</Version>
-    <Description>A collection of often used converters to write a WPF based application</Description>
-    <Company>nkristek</Company>
-    <Authors>nkristek</Authors>
-    <PackageId>NKristek.Wpf.Converters</PackageId>
-    <Copyright>Copyright © 2019 Niclas Kristek</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/nkristek/Wpf.Converters</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/nkristek/Wpf.Converters.git</RepositoryUrl>
+    <Features>strict</Features>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>Converter IValueConverter IMultiValueConverter WPF XAML</PackageTags>
-    <PackageReleaseNotes>This release adds support for .NET Core 3.0 and C#8 nullable reference types.</PackageReleaseNotes>
-    <NeutralLanguage>en</NeutralLanguage>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+  
+  <!-- Package metadata -->
+  <PropertyGroup>
+    <Version>2.0.1</Version>
+    <Company>nkristek</Company>
+    <Authors>nkristek</Authors>
+    <RootNamespace>NKristek.Wpf.Converters</RootNamespace>
+    <AssemblyName>NKristek.Wpf.Converters</AssemblyName>
+    <PackageId>NKristek.Wpf.Converters</PackageId>
+    <Description>A collection of often used converters to write a WPF based application</Description>
+    <PackageTags>Converter IValueConverter IMultiValueConverter WPF XAML</PackageTags>
+    <Copyright>Copyright © 2019 Niclas Kristek</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/nkristek/Wpf.Converters</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nkristek/Wpf.Converters.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
 
+  <!-- Package Icon -->
+  <!--<ItemGroup>
+    <None Include="..\..\resources\icon-256x256.png" Pack="true" Visible="false" PackagePath="\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PackageIcon>icon-256x256.png</PackageIcon>
+  </PropertyGroup>-->
+  
+  <!-- Code Signing -->
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>Wpf.Converters.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  
+  <!-- Don't reference assemblies not needed by .NET Core 3.0 or are not available in .NET Framework 3.5 -->
   <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp3.0'">
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' != 'net35' And '$(TargetFramework)' != 'netcoreapp3.0'">
+  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp3.0' And '$(TargetFramework)' != 'net35'">
     <Reference Include="System.Xaml" />
   </ItemGroup>
-  
+
+  <!-- Replace inheritdoc tags -->
   <ItemGroup>
     <PackageReference Include="SauceControl.InheritDoc" Version="0.4.0" PrivateAssets="all"/>
   </ItemGroup>
 
+  <!-- Disable warning, that no inheritdoc documentation was replaced -->
   <PropertyGroup>
     <NoWarn>$(NoWarn);IDT004</NoWarn>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
+  <!-- Fix no documentation found for .NET Framework 3.5 -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net35'">
     <NoWarn>$(NoWarn);IDT002</NoWarn>
     <FrameworkPathOverride>$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
   </PropertyGroup>
