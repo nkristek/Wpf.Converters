@@ -58,7 +58,7 @@
 
   <!-- Replace inheritdoc tags -->
   <ItemGroup>
-    <PackageReference Include="SauceControl.InheritDoc" Version="0.4.0" PrivateAssets="all"/>
+    <PackageReference Include="SauceControl.InheritDoc" Version="1.0.0" PrivateAssets="all" />
   </ItemGroup>
 
   <!-- Disable warning, that no inheritdoc documentation was replaced -->
