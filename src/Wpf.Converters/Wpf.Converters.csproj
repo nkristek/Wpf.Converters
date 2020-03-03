@@ -15,7 +15,7 @@
   
   <!-- Package metadata -->
   <PropertyGroup>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <Company>nkristek</Company>
     <Authors>nkristek</Authors>
     <RootNamespace>NKristek.Wpf.Converters</RootNamespace>
